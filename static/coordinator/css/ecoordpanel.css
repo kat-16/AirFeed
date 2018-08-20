@@ -1,0 +1,38 @@
+.date {
+    font-size: 3em;
+}
+
+.event-title{
+  padding-bottom: 10px;
+}
+.datestamp {
+    border-right: 1px solid #cecece;
+}
+
+a {
+    color: black;
+}
+
+i {
+    margin: 0.2em;
+    font-size: 1.2em;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+.container{
+  margin-top: 1em;
+}
+
+.event-description{
+  text-overflow: ellipsis;
+}
+
+.event_heading{
+	display: flex;
+}
+.event_heading button{
+	float:right;
+}

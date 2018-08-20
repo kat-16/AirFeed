@@ -1,0 +1,53 @@
+{% extends "base.html"%} {% load i18n %} {% load static %}
+{% block title %}Admin Panel | BharDeFeedback {% endblock %}
+{% block extra_head %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'administrator/css/adminpanel.css' %}"> {% endblock %} {% block content %} {% if user.is_authenticated %}
+<div class="container-fluid">
+
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h2 class="text-themecolor">Coordinators</h2>
+        </div>
+        <div class="col-md-7 align-self-center">
+            <div>
+                <a href="{% url 'registration_register' %}">
+                    <button type="button" class="btn btn-success add_ecoord"  style="position: fixed;top: 120px;right: 50px;" onclick="{% url 'registration_register'%}"> Add Coordinator</button>
+                </a>
+            </div>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+
+        {% for i in ecoordlist %}
+
+        <div class="col-md-10 col-lg-10 col-xlg-4">
+            <div class="card card-body">
+                <div class="row d-flex">
+                    <div class="col-md-10">
+                        <div class="box-title  m-b-0">
+                            <h3>{{ i }}</h3>
+                    </div>
+                        <address>
+                            {{ i.about }}
+                            <br/>
+                            <br/>
+                        </address>
+                    </div>
+                    <div class="col-md-2">
+                        {% if i.is_presenter %}
+                            <span class="badge badge-danger" style="font-size:100%; margin:10px;">Presenter</span> {% else %}
+                            <span class="badge badge-light" style="text-decoration: line-through; font-size:100%; margin:10px; ">Presenter</span> {% endif %}
+                            {% if i.is_active %}
+                            <span class="badge badge-success"  style="font-size:100%; margin:10px;">Active</span> {% else %}
+                            <span class="badge badge-light" style="text-decoration: line-through; font-size:100%; margin:10px;">Active</span> {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+    {% else %} {% endif %} {% endblock %}

@@ -1,0 +1,10 @@
+Django==2.0.7
+channels==1.1.5
+redis==2.10.6
+asgi-redis==1.4.3
+gunicorn==19.9.0
+psycopg2==2.7.3
+
+# async-timeout==3.0.0
+# certifi==2018.4.16
+# websocket-client==0.48.0

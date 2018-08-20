@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}MultiChat Example{% endblock %}
+{% block header_text %}MultiChat Example{% endblock %}
+{% load staticfiles %}
+{% block extra_head %}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.min.js"></script>
+    <script src="{% static 'feedback/main.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+  <div class="col-md-10">
+      <div class="card event-details">
+
+                            <div class="card-body" id="event-details">
+                                <h2 ><b>Event Title:</b>{{event.event_name}}</h2>
+                                 <p class="text-lead"><b>Description </b>{{event.description}}</p>
+
+                                <p class="card-text">Starting on <a href="#" class="btn btn-info">{{event.timestamp}}</a></p>
+                                <div id="room_id" hidden>
+                                  {{event.id}}
+                                </div>
+                            </div>
+                          </div>
+
+                          <div class="card card-outline-inverse" id="no-questions" style="display: none;">
+                              <div class="card-header">
+                                  <h4 class="m-b-0 text-white">No active questions right now!</h4></div>
+                              <div class="card-body">
+                                  <p class="card-text">You'll be able to provide feedback in realtime as soon as the presented asks any questions.</p>
+                                  <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                              </div>
+                          </div>
+                                        <input type='hidden' name='csrf_token' value='{{csrf}}'>
+                                        <div class="card card-outline-inverse" id="question" style="display: none;">
+                                          </div>
+
+                                        </div>
+
+                                      </div>
+
+{% endblock %}

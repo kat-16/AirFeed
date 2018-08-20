@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}AirFeed | Home{% endblock %}</title>
+    <link href="{% static '/assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static '/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet">
+
+    <link href="{% static '/assets/plugins/toast-master/css/jquery.toast.css' %}" rel="stylesheet">
+  <link href="{% static '/assets/css/style.css' %}" rel="stylesheet">
+ <link href="{% static '/assets/css/pages/dashboard1.css' %}" rel="stylesheet">
+ {% block extra_head %}{% endblock %}
+    <link href="{% static '/assets/css/colors/default-dark.css' id='theme' %}" rel="stylesheet">
+  <link href="{% static '/assets/css/pages/card-page.css'  %}" rel="stylesheet">
+</head>
+
+  {% if user.is_authenticated %}
+<body class="fix-header fix-sidebar card-no-border">
+  {% else %}
+  <body class="fix-header fix-sidebar card-no-border" style="overflow-y:hidden;">
+  {% endif %}
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">BDF</p>
+        </div>
+    </div>
+    <div class="main-wrapper" >
+                {% if user.is_authenticated %}
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <div class="navbar-collapse" style="background-color: black;box-shadow: 0px 8px 6px -5px black;">
+                    <ul class="navbar-nav mr-auto">
+
+                                    <li>
+                                        <a href="/"><span class="text-lead" style="color: white;font-weight: bolder;">AirFeed</span></a>
+                                    </li>
+
+
+                                            </ul>
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" style="color: white;font-weight: bolder;"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{user.username}}</a>
+                            <div class="dropdown-menu dropdown-menu-right animated flipInY">
+                                <ul class="dropdown-user">
+                                    <li>
+                                        <div class="dw-user-box">
+                                            <div class="u-text">
+                                                <h4>{{user.username}}</h4>
+                                                <p class="text-muted">{{user.email}}</p>
+                                        </div>
+                                    </li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="{% url 'index' %}"><i class="ti-user"></i> Home</a></li>
+                                    <li><a href="{% url 'auth_password_change' %}"><i class="ti-wallet"></i> Change Password</a></li>
+
+                                    <li><a href="{% url 'auth_logout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        {% endif%}
+
+<div class="page-wrapper" style="padding: 50px;padding-top: 100px;">
+                {% block content %}{% endblock %}
+                {% block extra_body %}{% endblock %}
+                <div class="container-fluid r-aside">
+                    <div class="right-sidebar">
+                        <div class="slimscrollright">
+                            <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+                            <div class="r-panel-body">
+                              Right panel
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <footer class="footer"> © 2018 BharDeFeedback</footer>
+            </div>
+        </div>
+        <script src="{% static 'assets/plugins/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/bootstrap/js/popper.min.js' %}"></script>
+        <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'assets/js/perfect-scrollbar.jquery.min.js' %}"></script>
+        <script src="{% static '/assets/js/waves.js' %}"></script>
+        <script src="{% static '/assets/js/sidebarmenu.js' %}"></script>
+        <script src="{% static 'assets/js/custom.min.js' %}"></script>
+        {% block scripts%}{% endblock%}
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% load i18n %} {% block content %}
+<div class="container-fluid">
+    <div>
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body" id="card">
+                    <div style="width: 50%;float: left">
+                        <h1 class="card-title"><center><u>Event Overview</u></center></h1>
+                        <br/>
+                        <h2>Event Name: <strong>{{ event.event_name }}</strong></h2>
+                        <h2>Description: {{event.description}}</h2>
+                        <h2>Presenter: {{ event.presenter }}</h2>
+                        <h2>Time: {{ event.timestamp }}</h2>
+                        </p>
+                    </div>
+                    <div style="width: 50%;float: right;text-align: center">
+                        <h1 class="card-title"><center><u>QR Code</u></center></h1>
+                        <br/>
+                        <img align="middle" src="https://api.qrserver.com/v1/create-qr-code/?data={{request.get_host}}/feedback/{{event.id}}" width="400 " height="400 " />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center ">
+        <a onclick="PrintElem() " target="_blank " style="cursor:pointer; ">
+            <button type="button " class="btn btn-info btn-rounded ">Print</button>
+        </a>
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+    function PrintElem()
+    {
+        var divElements = document.getElementById('card').innerHTML;
+        //Get the HTML of whole page
+
+        var oldPage = document.body.innerHTML;
+
+        // divElements.setAttribute("padding ", '16px');
+        //Reset the page's HTML with div's HTML only
+        document.body.innerHTML =
+          "<html>
+
+                        <head></head>
+
+                        <body style='margin: 20px'>" + '
+                            <br/>' + divElements + "</body>"; //Print Page window.print(); //Restore orignal HTML document.body.innerHTML = oldPage; }
+                        </script>
+                        {% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %} {% load i18n %}{% load static %}
+{%block extra_head %}
+
+{% endblock %}
+{% block content %}
+
+
+<div class="row m-t-40">
+    <div class="col-2">
+
+    </div>
+    <div class="col-8">
+      <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+          <h2 class="text-themecolor">Create Event</h2>
+        </div>
+        <div class="col-md-7 align-self-center">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active">event/create </li>
+          </ol>
+        </div>
+      </div>
+        <div class="card">
+    <div class="card-body">
+        <form method="post" action="" class="form-material">
+            {% csrf_token %} {{ form.non_field_errors }}
+            <div class="form-group">
+                {{ form.event_name.errors }}
+                <label for="id_event_name">Event Name:</label>
+                <input type="text" class="form-control" name="event_name" maxlength="200" required id="id_event_name" />
+            </div>
+            <div class="form-group">
+                {{ form.date_event.errors }}
+                <label for="id_date_event">Date Time:</label>
+                <input type="text" class="bootstrapMaterialDatePicker form-control" name="date_event" required id="id_date_event" placeholder="2017-06-04 21:44" />
+            </div>
+            <div class="form-group">
+                {{ form.duration.errors }}
+                <label for="id_duration">Duration of event:</label>
+                <input type="number"  min="0" max="24" class="form-control" name="duration" required id="id_duration" />
+            </div>
+            <div class="form-group">
+                {{ form.presenter.errors }}
+                <label for="id_presenter">Presenter email</label>
+                <input type="email"  class="form-control" name="presenter" required id="id_presenter" />
+            </div>
+            <div class="form-group">
+                {{ form.description.errors }}
+                <label for="id_description">Description:</label>
+                <textarea name="description" class="form-control" cols="40" rows="4" required id="id_description">
+                </textarea>
+            </div>
+            <div class="form-group text-center" style="margin:10px;">
+                            <div class="col-xs-12 p-b-20">
+                                <input class="btn btn-info float-right" type="submit" value="Submit">
+                            </div>
+                        </div>
+        </form>
+    </div>
+</div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts%}
+
+{% endblock%}
